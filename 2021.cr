@@ -6,33 +6,25 @@ abstract class Lyric
   end
 end
 
-class TwentyTwentyOne < Lyric
-  class_getter content : String = "Twenty twenty one"
+macro lyric(content)
+  class {{content.gsub(/,|'/, "") .split.map { |s| s[0..0].upcase + s[1..256].downcase } .join("") .id}} < Lyric
+    class_getter content : String = {{content}}
+  end
 end
 
-class Sunshine < Lyric
-  class_getter content : String = "Sunshine on a kick drum"
-end
-
-class Drum < Lyric
-  class_getter content : String = "Kick, kick drum"
-end
-
-class DoneBefore < Lyric
-  class_getter content : String = "Everything you do, it's been done done done before"
-end
-
-class DidThatYesterday < Lyric
-  class_getter content : String = "Everything you say, yeah you said that yesterday"
-end
+lyric "Twenty twenty one"
+lyric "Sunshine on a kick drum"
+lyric "Kick, kick drum"
+lyric "Everything you do, it's been done done done before"
+lyric "Everything you say, yeah you said that yesterday"
 
 9.times do
   TwentyTwentyOne.say
-  Sunshine.say
-  Drum.say
+  SunshineOnAKickDrum.say
+  KickKickDrum.say
 end
 
 12.times do
-  DoneBefore.say
-  DidThatYesterday.say
+  EverythingYouDoItsBeenDoneDoneDoneBefore.say
+  EverythingYouSayYeahYouSaidThatYesterday.say
 end
