@@ -1,3 +1,5 @@
+# https://7g.click/
+
 abstract class Lyric
   class_getter content : String = ""
 
